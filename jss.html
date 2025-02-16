@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Partikel Halus</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(240, 238, 239, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const numParticles = 50;
+        for (let i = 0; i < numParticles; i++) {
+            let particle = document.createElement("div");
+            particle.classList.add("particle");
+            document.body.appendChild(particle);
+
+            let delay = Math.random() * 5;
+            let duration = 3 + Math.random() * 2;
+            let leftPos = Math.random() * window.innerWidth;
+            let size = 5 + Math.random() * 10;
+
+            particle.style.left = `${leftPos}px`;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `-${delay}s`; // Supaya looping terasa seamless
+        }
+    </script>
+</body>
+
+</html>
